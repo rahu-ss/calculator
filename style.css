@@ -1,0 +1,173 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;1,600&family=Roboto:wght@300&family=Rubik+Iso&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+   box-sizing: border-box;
+   color: #d6d0d4;
+
+}
+body{
+    background: linear-gradient(135deg,#00feba,#240ad2);
+
+}
+
+
+.search{
+    
+ 
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    height: 60px;
+    background: #f1f1f3;
+    display: flex;
+    align-items: center;
+    border-radius: 9px;
+}
+.search input{
+    flex: 1;
+    height: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: rgb(26, 25, 25);
+    font-size: 23px;
+    padding: 0 30px;
+  
+}
+.search button{
+    border: 0;
+    outline: none;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.search button img{
+    width: 18px;
+}
+/* 
+::placeholder{
+    color: #1a1919;
+    font-size: 1rem;
+    font-weight: bolder;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+} */
+form button{
+    padding: 0px 40px;
+    height: 100%;
+    background: #4423ff;
+    color: white;
+    font-size: 18px;
+    border: 0;
+    outline: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+    filter: blur(0.5px);
+}
+/* ......................... */
+
+.con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+   
+    
+}
+
+.con video{
+   max-width: 1500px;
+   border-radius: 15px;
+}
+h1{
+    text-align: center;
+    font-size: 37px;
+    font-weight: bolder;
+    padding: 3px 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+.fa-solid{
+    font-size: 18px;
+    color: #353535;
+}
+
+h2{
+    text-align: center;
+    font-size: 27px;
+    font-weight: bolder;
+    padding: 2px 0;
+    filter: blur(0.5);
+ 
+}
+.search button:hover{
+    background-color: gray;
+}
+span{
+  color: #353535;
+}
+.footer{
+    background: linear-gradient(135deg,#00feba,#240ad2);
+    
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 230px;
+}
+
+
+@media(max-width:768px){
+    .con video{
+        max-width: 500px;
+        border-radius: 15px;
+     }
+}
+
+@media(max-width:500px){
+    .con video{
+        max-width: 400px;
+        border-radius: 15px;
+     }
+}
+@media(max-width:400px){
+    .con video{
+        max-width: 300px;
+        border-radius: 15px;
+     }
+}
+
+
+
+
+/* .................mediaqurey.............. */
+
+@media(max-width:1300px){
+    .weathercon img{
+     max-width: 500px;
+     border-radius: 17px;
+        align-items: center;
+        height: 90vh;
+        padding-bottom: 1px;
+     }
+     h1{
+         text-align: center;
+         font-size: 19px;
+         font-weight: bolder;
+         padding: 1px 0;
+     }
+     
+     h2{
+         text-align: center;
+         font-size: 17px;
+         font-weight: bolder;
+         padding: 1px 0;
+         filter: blur(0.5);
+      
+     }
+}

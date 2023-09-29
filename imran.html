@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="search">
+        <input type="text" id="searchBox" placeholder="Enter your city" spellcheck="false">
+        <button id="searchButton"><img src="img/search.png" alt=""></button>
+        <button id="voiceButton"><i class="fa-solid fa-microphone-lines"></i></button>
+    </div>
+   
+    <div class="item">
+        <h1 class="temp">See your city's weather with video effects</h1>
+        <h2 class="city"><span id="element"></span></h2>
+        <div class="con">
+            <video src="" class="weather-icon"></video>
+        </div>
+    </div>
+
+    <footer class="footer">&copy; This Website is made by Imran Aly</footer>
+
+    <script>
+        const apiKey = "135b0644d1b23d846116ca31765f036a";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+        const searchBox = document.getElementById("searchBox");
+        const searchButton = document.getElementById("searchButton");
+        const voiceButton = document.getElementById("voiceButton");
+
+        // Function to fetch weather data and update the UI
+        async function checkWeather(city) {
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            const data = await response.json();
+            console.log(data);
+
+            document.querySelector(".city").innerHTML = data.name;
+            document.querySelector(".temp").innerHTML = data.main.temp + "°C";
+
+            // Get a reference to the video element
+            const weatherVideo = document.querySelector(".weather-icon");
+
+            // Inside your conditional block, set the source and autoplay the video
+            if (data.weather[0].main == "Clouds") {
+                weatherVideo.src = "img/clouds.mp4";
+                weatherVideo.autoplay = true;
+            } else if (data.weather[0].main == "Clear") {
+                weatherVideo.src = "img/clear.mp4";
+                weatherVideo.autoplay = true;
+            } else if (data.weather[0].main == "Mist") {
+                weatherVideo.src = "img/mist.mp4";
+                weatherVideo.autoplay = true;
+            } else if (data.weather[0].main == "Rain") {
+                weatherVideo.src = "img/rain.mp4";
+                weatherVideo.autoplay = true;
+            } else if (data.weather[0].main == "Drizzle") {
+                weatherVideo.src = "img/drizzle.mp4";
+                weatherVideo.autoplay = true;
+            } else if (data.weather[0].main == "Snow") {
+                weatherVideo.src = "img/snow.mp4";
+                weatherVideo.autoplay = true;
+            } else {
+                weatherVideo.src = "img/md.png";
+                weatherVideo.autoplay = false; // No autoplay for this condition
+            }
+        }
+
+        // Event listener for the search button
+        searchButton.addEventListener("click", () => {
+            checkWeather(searchBox.value);
+        });
+
+        // Check if the browser supports the SpeechRecognition API
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            // SpeechRecognition API is supported
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+
+            // Set some options for recognition (optional)
+            recognition.continuous = false; // Stop listening after the first result
+            recognition.lang = 'en-US'; // Set the language for recognition
+
+            // Add an event listener for when speech is recognized
+            recognition.onresult = (event) => {
+                const result = event.results[0][0].transcript;
+                searchBox.value = result;
+                checkWeather(result);
+            };
+
+            // Add an event listener for errors (optional)
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+            };
+
+            // Add a click event listener to the voice button to start speech recognition
+            voiceButton.addEventListener('click', () => {
+                recognition.start();
+            });
+        } else {
+            // SpeechRecognition API is not supported, provide a fallback or message to the user
+            console.error('SpeechRecognition API is not supported in this browser.');
+        }
+    </script>
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['just Typing Your City Name',],
+            typeSpeed: 100,
+            loop: true,
+        });
+    </script>
+</body>
+</html>
